@@ -24,6 +24,30 @@ class Seller {
         const seller = await pool.query(query)
         return seller.rows[0]
     }
+
+    static updateSeller = async (payload, seller_id) => {
+        let query = `UPDATE sellers SET`
+        const arr = Object.keys(payload)
+        for (let i = 0; i < array.length; i++) {
+            if (i === arr.length - 1) {
+                query += `${arr[i]}= '${payload[arr[i]]}'`
+            } else {
+                query += `${arr[i]}= '${payload[arr[i]]}',`
+            }
+                }
+        query += `WHERE seller_id = ${seller_id}
+        RETURNING *;`
+        const updated = await pool.query(query)
+        return updated.rows[0]
+    }
+
+    static deleteSeller = async (seller_id) => {
+        const query = `DELETE FROM sellers 
+        WHERE seller_id = ${seller_id}
+        RETURNING *;`
+        const deleted = await pool.query(query)
+        return deleted.rows[0]
+    }
 }
 
 module.exports = Seller

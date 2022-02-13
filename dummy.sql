@@ -1,0 +1,1 @@
+DELETE FROM sellers WHERE seller_id = ${seller_id};
