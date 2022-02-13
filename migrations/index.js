@@ -2,14 +2,14 @@ const pool = require('../config/index')
 
 const migrations = async () => {
 
-    const query_create_sellers = `CREATE TABLE sellers(
+    const query_create_sellers = `CREATE TABLE IF NOT EXISTS sellers(
     seller_id INT GENERATED ALWAYS AS IDENTITY,
     seller_name VARCHAR(255) NOT NULL,
-    seller_location text,
+    seller_location VARCHAR(255),
     PRIMARY KEY(seller_id)
  );`
     
-    const query_create_products = `CREATE TABLE products(
+    const query_create_products = `CREATE TABLE IF NOT EXISTS products(
     product_id INT GENERATED ALWAYS AS IDENTITY,
     seller_id INT,
     product_name VARCHAR(255) NOT NULL,

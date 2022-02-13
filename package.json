@@ -4,7 +4,7 @@
   "description": "Membuat Backend sederhana dengan PGAdmin4",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon index.js",
+    "dev": "nodemon index.js",
     "db_migrate": "node migrations/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/withraja/CRUD-Express#readme",
   "dependencies": {
     "express": "^4.17.2",
+    "nodemon": "^2.0.15",
     "pg": "^8.7.3"
   }
 }
