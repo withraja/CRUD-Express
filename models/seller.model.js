@@ -26,20 +26,22 @@ class Seller {
     }
 
     static updateSeller = async (payload, seller_id) => {
-        let query = `UPDATE sellers SET`
+        let query = `
+        UPDATE sellers SET
+        `
         const arr = Object.keys(payload)
-        for (let i = 0; i < array.length; i++) {
-            if (i === arr.length - 1) {
-                query += `${arr[i]}= '${payload[arr[i]]}'`
-            } else {
-                query += `${arr[i]}= '${payload[arr[i]]}',`
-            }
-                }
-        query += `WHERE seller_id = ${seller_id}
-        RETURNING *;`
+        for (let i = 0; i < arr.length; i++) {
+          if (i === arr.length - 1) {
+            query += `${arr[i]}= '${payload[arr[i]]}'`
+          } else {
+            query += `${arr[i]}= '${payload[arr[i]]}',`
+          }
+        }
+        query += `WHERE seller_id=${seller_id} RETURNING * ;`
+        console.log(query)
         const updated = await pool.query(query)
         return updated.rows[0]
-    }
+      }
 
     static deleteSeller = async (seller_id) => {
         const query = `DELETE FROM sellers 
